@@ -23,6 +23,7 @@ class BrickBreaker extends FlameGame
         ),
       );
 
+  final ValueNotifier<int> score = ValueNotifier(0); 
   final rand = math.Random();
   double get width => size.x;
   double get height => size.y;
@@ -61,7 +62,8 @@ class BrickBreaker extends FlameGame
     world.removeAll(world.children.query<Bat>());
     world.removeAll(world.children.query<Brick>());
 
-    playState = PlayState.playing;                              
+    playState = PlayState.playing;
+    score.value = 0;                              
 
     world.add(
       Ball(
@@ -71,7 +73,7 @@ class BrickBreaker extends FlameGame
         velocity: Vector2(
           (rand.nextDouble() - 0.5) * width,
           height * 0.2,
-        ).normalized()..scale(height / 4),
+        ).normalized()..scale(height / 2),
       ),
     );
 
